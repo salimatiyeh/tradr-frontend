@@ -10,13 +10,18 @@ import { ListingService, Listing } from '../listing.service';
   templateUrl: './listing-list.html'
 })
 export class ListingList implements OnInit {
-  listings: Listing[] = [];
+  listings: any[] = [];
 
   constructor(private listingService: ListingService) {}
 
-  ngOnInit(): void {
-    this.listingService.getListings().subscribe((data) => {
-      this.listings = data;
-    })
+  ngOnInit() {
+    this.listingService.getListings().subscribe({
+      next: (data) => {
+        this.listings = data;
+      },
+      error: (err) => {
+        console.error('Error loading listings:', err);
+      }
+    });
   }
 }

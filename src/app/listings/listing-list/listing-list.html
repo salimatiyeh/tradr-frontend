@@ -1,7 +1,9 @@
 <h2>All Listings</h2>
+<p *ngIf="listings.length === 0">No listings found.</p>
 
-<ul>
+<ul *ngIf="listings.length > 0">
   <li *ngFor="let listing of listings">
     <strong>{{ listing.title }}</strong> - ${{ listing.price }}
+    <p>{{ listing.description }}</p>
   </li>
 </ul>
