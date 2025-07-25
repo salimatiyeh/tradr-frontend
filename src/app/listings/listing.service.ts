@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable} from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AuthService } from '../auth/auth.service';
 
 export interface Listing {
   id: number;
@@ -11,11 +13,16 @@ export interface Listing {
   providedIn: 'root'
 })
 export class ListingService {
-  getListings(): Observable<Listing[]> {
-    return of([
-      { id: 1, title: 'Charizard Holo – PSA 10', price: 300 },
-      { id: 2, title: 'Blue-Eyes White Dragon – Mint', price: 150 },
-      { id: 3, title: 'Michael Jordan Rookie Card', price: 1000 }
-    ]);
+ private apiUrl = 'http://localhost:3000/listings';
+
+ constructor(private http: HttpClient, private auth: AuthService) {}
+
+ getListings(): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+
+    return this.http.get(this.apiUrl, { headers });
   }
 }
