@@ -1,1 +1,6 @@
-<p>listing-detail works!</p>
+<div *ngIf="listing">
+  <h2>{{ listing.title }}</h2>
+  <p>Price: ${{ listing.price }}</p>
+  <p>{{ listing.description }}</p>
+</div>
+<p *ngIf="!listing">Loading…</p>

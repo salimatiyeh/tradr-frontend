@@ -1,9 +1,12 @@
+<!-- src/app/listings/listing-list/listing-list.html -->
 <h2>All Listings</h2>
 <p *ngIf="listings.length === 0">No listings found.</p>
 
 <ul *ngIf="listings.length > 0">
   <li *ngFor="let listing of listings">
-    <strong>{{ listing.title }}</strong> - ${{ listing.price }}
-    <p>{{ listing.description }}</p>
+    <a [routerLink]="['/listings', listing.id]">
+      <strong>{{ listing.title }}</strong> - ${{ listing.price }}
+      <p>{{ listing.description }}</p>
+    </a>
   </li>
 </ul>
