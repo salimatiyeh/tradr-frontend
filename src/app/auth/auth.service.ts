@@ -20,6 +20,18 @@ export class AuthService {
     }, options);
   }
 
+  logout(): Observable<any> {
+    const token = localStorage.getItem('token');
+    // Perform DELETE request to sign the user out.  If the backend responds with
+    // no content, Angular will handle the empty body gracefully.
+    return this.http.delete(`${this.apiUrl}/users/sign_out`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    });
+  }
+
   getAuthHeaders() {
     const token = localStorage.getItem('token')
     return {
