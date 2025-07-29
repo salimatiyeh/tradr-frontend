@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ListingService, Listing } from '../listing.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   standalone: true,
   selector: 'app-listing-list',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   styleUrl: './listing-list.css',
   templateUrl: './listing-list.html'
 })
