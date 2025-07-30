@@ -9,6 +9,10 @@
 
   <nav class="navbar__menu" [class.navbar__menu--open]="open">
     <a routerLink="/" (click)="open = false">Home</a>
+    <ng-container *ngIf="isLoggedIn()">
+  <a routerLink="/listings/new">Create Listing</a>
+</ng-container>
+
     <ng-container *ngIf="!isLoggedIn()">
       <a routerLink="/login" (click)="open = false">Login</a>
       <a routerLink="/register" (click)="open = false">Register</a>
