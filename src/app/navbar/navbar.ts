@@ -13,6 +13,8 @@ import { AuthService } from '../auth/auth.service';
 export class Navbar {
   constructor(private router: Router, private authService: AuthService) {}
 
+  open = false;
+
   isLoggedIn(): boolean {
     return !!localStorage.getItem('token');
   }
